@@ -34,5 +34,6 @@ namespace WealthApi.Controllers
 
             return Ok();
         }
+
     }
 }
