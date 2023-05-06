@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Programowanie\\WealthWiseApi\\WealthApi\\WealthApi.csproj": {}
+    "C:\\Users\\Krystian\\Desktop\\finance-tracker\\finance-tracker-api\\WealthApi\\WealthApi.csproj": {}
   },
   "projects": {
-    "C:\\Programowanie\\WealthWiseApi\\WealthApi\\WealthApi.csproj": {
+    "C:\\Users\\Krystian\\Desktop\\finance-tracker\\finance-tracker-api\\WealthApi\\WealthApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Programowanie\\WealthWiseApi\\WealthApi\\WealthApi.csproj",
+        "projectUniqueName": "C:\\Users\\Krystian\\Desktop\\finance-tracker\\finance-tracker-api\\WealthApi\\WealthApi.csproj",
         "projectName": "WealthApi",
-        "projectPath": "C:\\Programowanie\\WealthWiseApi\\WealthApi\\WealthApi.csproj",
-        "packagesPath": "C:\\Users\\Patryk\\.nuget\\packages\\",
-        "outputPath": "C:\\Programowanie\\WealthWiseApi\\WealthApi\\obj\\",
+        "projectPath": "C:\\Users\\Krystian\\Desktop\\finance-tracker\\finance-tracker-api\\WealthApi\\WealthApi.csproj",
+        "packagesPath": "C:\\Users\\Krystian\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Krystian\\Desktop\\finance-tracker\\finance-tracker-api\\WealthApi\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Patryk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Krystian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,6 +47,10 @@
             "MailKit": {
               "target": "Package",
               "version": "[3.6.0, )"
+            },
+            "Microsoft.AspNet.Cors": {
+              "target": "Package",
+              "version": "[5.2.9, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -87,7 +95,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -99,7 +108,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
