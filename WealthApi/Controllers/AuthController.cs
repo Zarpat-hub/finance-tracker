@@ -34,5 +34,20 @@ namespace WealthApi.Controllers
 
             return Ok();
         }
+
+        [HttpPost]
+        [Route("/token")]
+        public async Task<ActionResult<string>> AttemptLogin([FromBody] UserLoginDTO userLoginDTO)
+        {
+            try
+            {
+                string token = await Task.Run(() => _authenticationFacade.GetAuthorizationToken(userLoginDTO));
+
+                return Ok(token);
+            } catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "MGFo0SLUGRb/YdVgjo3Kg1KqevffXypkKAaNrD3lAMzHty3kRPEJ3mVZU4M5bIEAVjmvxOeri7FrD01gxJQCAA==",
+  "dgSpecHash": "3LpyNokpgth1Q5CzTpytJBnItkIV8tiem2Xk/IP89BJc1UUM+qdGCAAdD9eXtxYHYoSdotH0gezMja4BsCI54w==",
   "success": true,
   "projectFilePath": "C:\\Programowanie\\WealthWiseApi\\WealthApi\\WealthApi.csproj",
   "expectedPackageFiles": [
@@ -36,6 +36,7 @@
     "C:\\Users\\Patryk\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\Patryk\\.nuget\\packages\\mimekit\\3.6.0\\mimekit.3.6.0.nupkg.sha512",
     "C:\\Users\\Patryk\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\Patryk\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\Patryk\\.nuget\\packages\\npgsql\\7.0.2\\npgsql.7.0.2.nupkg.sha512",
     "C:\\Users\\Patryk\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.3\\npgsql.entityframeworkcore.postgresql.7.0.3.nupkg.sha512",
     "C:\\Users\\Patryk\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
