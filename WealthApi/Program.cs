@@ -32,7 +32,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 builder.Services.AddScoped<IAuthenticationFacade, AuthenticationFacade>();
 builder.Services.AddScoped<ITokenProvider, TokenProvider>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
-builder.Services.AddSingleton<IPasswordHasher<UserRegisterDTO>, PasswordHasher<UserRegisterDTO>>();
+builder.Services.AddScoped<IPasswordHasher<UserRegisterDTO>, PasswordHasher<UserRegisterDTO>>();
+builder.Services.AddScoped<IPasswordHasher<UserLoginDTO>, PasswordHasher<UserLoginDTO>>();
 builder.Services.AddDbContext<DataContext>();
 
 var app = builder.Build();

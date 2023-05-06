@@ -3,17 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WealthApi.Contracts
 {
-    public class UserRegisterDTO
+    public class UserLoginDTO
     {
-        [JsonProperty("username")]
+        [JsonProperty]
         [Required]
         public string Username { get; set; }
 
-        [JsonProperty("email")]
-        [Required]
-        public string Email { get; set; }
-        
-        [JsonProperty("password")]
+        [JsonProperty]
         [Required]
         public string Password { get; set; }
     }

@@ -12,6 +12,7 @@ namespace WealthApi.Facades
         string GenerateConfirmationToken(UserRegisterDTO dto);
         bool ValidateToken(string stringifiedToken);
         (string, string, string) GetCredentialsClaimsValues(string token);
+        string GenerateLoginToken(string username);
     }
 
     public class TokenProvider : ITokenProvider
@@ -41,6 +42,21 @@ namespace WealthApi.Facades
                 expires: DateTime.Now.AddMinutes(15),
                 signingCredentials: credentials);
 
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public string GenerateLoginToken(string username)
+        {
+            SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            SigningCredentials credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
+               _config["Jwt:Audience"],
+               new[] { new Claim(ClaimTypes.Name, username) },
+                expires: DateTime.Now.AddMinutes(30),
+                signingCredentials: credentials
+               );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
