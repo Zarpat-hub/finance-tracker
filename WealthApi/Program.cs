@@ -6,6 +6,8 @@ using WealthApi.Contracts;
 using WealthApi.Database;
 using WealthApi.EmailSender;
 using WealthApi.Facades;
+using WealthApi.Middleware;
+using WealthApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,16 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IAuthenticationFacade, AuthenticationFacade>();
+builder.Services.AddScoped<ITokenProvider, TokenProvider>();
+builder.Services.AddScoped<IEmailSender, EmailSender>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IPasswordHasher<UserRegisterDTO>, PasswordHasher<UserRegisterDTO>>();
+builder.Services.AddScoped<IPasswordHasher<UserLoginDTO>, PasswordHasher<UserLoginDTO>>();
+builder.Services.AddDbContext<DataContext>();
+builder.Services.AddScoped<ErrorMiddleware>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
@@ -29,14 +41,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
-builder.Services.AddScoped<IAuthenticationFacade, AuthenticationFacade>();
-builder.Services.AddScoped<ITokenProvider, TokenProvider>();
-builder.Services.AddScoped<IEmailSender, EmailSender>();
-builder.Services.AddScoped<IPasswordHasher<UserRegisterDTO>, PasswordHasher<UserRegisterDTO>>();
-builder.Services.AddScoped<IPasswordHasher<UserLoginDTO>, PasswordHasher<UserLoginDTO>>();
-builder.Services.AddDbContext<DataContext>();
 
 var app = builder.Build();
+
+app.UseMiddleware<ErrorMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
