@@ -19,7 +19,7 @@ namespace WealthApi.EmailSender
             email.Subject = "Testing out email sending";
             email.Body = new TextPart(MimeKit.Text.TextFormat.Html)
             {
-                Text = $"<a href='https://localhost:7083/Auth/confirm/{token}'>Click here to confirm</a>"
+                Text = $"<a href='http://127.0.0.1:5173/activate-account/{token}'>Click here to confirm</a>"
             };
 
             using (var smtp = new MailKit.Net.Smtp.SmtpClient())

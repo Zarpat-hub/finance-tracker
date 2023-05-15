@@ -2,6 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using WealthApi.Contracts;
 
@@ -13,6 +14,7 @@ namespace WealthApi.Facades
         bool ValidateToken(string stringifiedToken);
         (string, string, string) GetCredentialsClaimsValues(string token);
         string GenerateLoginToken(string username);
+        public string CreateRandomToken();
     }
 
     public class TokenProvider : ITokenProvider
@@ -24,6 +26,10 @@ namespace WealthApi.Facades
         {
             _config = config;
             _passwordHasher = passwordHasher;
+        }
+        public string CreateRandomToken()
+        {
+            return Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
         }
 
         public string GenerateConfirmationToken(UserRegisterDTO dto)

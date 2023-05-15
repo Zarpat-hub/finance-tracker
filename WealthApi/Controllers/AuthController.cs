@@ -22,7 +22,6 @@ namespace WealthApi.Controllers
         public async Task<IActionResult> AttemptRegistration([FromBody] UserRegisterDTO userDTO)
         {
             await _authenticationFacade.AttemptRegistration(userDTO);
-
             return Ok();
         }
 
@@ -39,15 +38,9 @@ namespace WealthApi.Controllers
         [Route("/token")]
         public async Task<ActionResult<string>> AttemptLogin([FromBody] UserLoginDTO userLoginDTO)
         {
-            try
-            {
-                string token = await Task.Run(() => _authenticationFacade.GetAuthorizationToken(userLoginDTO));
 
-                return Ok(token);
-            } catch (Exception ex)
-            {
-                return Problem(ex.Message);
-            }
+            string token = await Task.Run(() => _authenticationFacade.GetAuthorizationToken(userLoginDTO));
+            return Ok(token);
         }
     }
 }
