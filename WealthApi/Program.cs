@@ -25,6 +25,7 @@ builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPasswordHasher<UserRegisterDTO>, PasswordHasher<UserRegisterDTO>>();
 builder.Services.AddScoped<IPasswordHasher<UserLoginDTO>, PasswordHasher<UserLoginDTO>>();
+builder.Services.AddScoped<IPasswordHasher<ChangePasswordDTO>, PasswordHasher<ChangePasswordDTO>>();
 builder.Services.AddDbContext<DataContext>();
 builder.Services.AddScoped<ErrorMiddleware>();
 
