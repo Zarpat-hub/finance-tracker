@@ -39,7 +39,7 @@ namespace WealthApi.Facades
 
             if(user is null) 
             {
-                throw new NotFoundException("User not found");
+                throw new BadRequestException("User does not exist");
             }
 
             if(_passwordHasher.VerifyHashedPassword(dto, user.EncryptedPassword, dto.Password) == PasswordVerificationResult.Failed)

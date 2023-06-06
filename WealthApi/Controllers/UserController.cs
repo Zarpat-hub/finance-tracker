@@ -25,5 +25,16 @@ namespace WealthApi.Controllers
             User user = await _userService.GetCurrentUser();
             return Ok(user);
         }
+
+
+        [HttpPost]
+        [Route("change-password")]
+        [Authorize]
+        public async Task<IActionResult> ChangePassword(ChangePasswordDTO changePasswordDTO)
+        {
+            await _userService.ChangePassword(changePasswordDTO);
+            return Ok();
+        }
+
     }
 }
