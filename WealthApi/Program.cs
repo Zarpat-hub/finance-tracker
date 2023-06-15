@@ -28,6 +28,7 @@ builder.Services.AddScoped<IPasswordHasher<UserLoginDTO>, PasswordHasher<UserLog
 builder.Services.AddScoped<IPasswordHasher<ChangePasswordDTO>, PasswordHasher<ChangePasswordDTO>>();
 builder.Services.AddDbContext<DataContext>();
 builder.Services.AddScoped<ErrorMiddleware>();
+builder.Services.AddScoped<IAccountConfigFacade, AccountConfigFacade>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
