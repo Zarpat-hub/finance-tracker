@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GU6il43hTl7T3PHVaiehmum669jZKlW2i8OR/gIUn9CuJKaLTePCndPbCfG/QwxR8mrGsnvnCi6s3DLJlmVyXQ==",
+  "dgSpecHash": "1nZknTv1/rcCwqqzFLVdqLYC3U2tGHb/3saiVR2+5BiWt3W6OiBvSXSftlLdzK+jaFlvFwYwp2PhBn4Bz2Q+Rg==",
   "success": true,
   "projectFilePath": "C:\\Users\\kryst\\Desktop\\WealthWise\\finance-tracker-api\\WealthApi\\WealthApi.csproj",
   "expectedPackageFiles": [
@@ -9,9 +9,9 @@
     "C:\\Users\\kryst\\.nuget\\packages\\microsoft.aspnet.cors\\5.2.9\\microsoft.aspnet.cors.5.2.9.nupkg.sha512",
     "C:\\Users\\kryst\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.16\\microsoft.aspnetcore.authentication.jwtbearer.6.0.16.nupkg.sha512",
     "C:\\Users\\kryst\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
-    "C:\\Users\\kryst\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.5\\microsoft.entityframeworkcore.7.0.5.nupkg.sha512",
-    "C:\\Users\\kryst\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.5\\microsoft.entityframeworkcore.abstractions.7.0.5.nupkg.sha512",
-    "C:\\Users\\kryst\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.5\\microsoft.entityframeworkcore.analyzers.7.0.5.nupkg.sha512",
+    "C:\\Users\\kryst\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.7\\microsoft.entityframeworkcore.7.0.7.nupkg.sha512",
+    "C:\\Users\\kryst\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.7\\microsoft.entityframeworkcore.abstractions.7.0.7.nupkg.sha512",
+    "C:\\Users\\kryst\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.7\\microsoft.entityframeworkcore.analyzers.7.0.7.nupkg.sha512",
     "C:\\Users\\kryst\\.nuget\\packages\\microsoft.entityframeworkcore.design\\7.0.5\\microsoft.entityframeworkcore.design.7.0.5.nupkg.sha512",
     "C:\\Users\\kryst\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.5\\microsoft.entityframeworkcore.relational.7.0.5.nupkg.sha512",
     "C:\\Users\\kryst\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\7.0.5\\microsoft.entityframeworkcore.tools.7.0.5.nupkg.sha512",

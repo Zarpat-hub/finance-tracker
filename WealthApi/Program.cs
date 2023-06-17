@@ -7,7 +7,6 @@ using WealthApi.Database;
 using WealthApi.EmailSender;
 using WealthApi.Facades;
 using WealthApi.Middleware;
-using WealthApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +21,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IAuthenticationFacade, AuthenticationFacade>();
 builder.Services.AddScoped<ITokenProvider, TokenProvider>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserFacade, UserFacade>();
 builder.Services.AddScoped<IPasswordHasher<UserRegisterDTO>, PasswordHasher<UserRegisterDTO>>();
 builder.Services.AddScoped<IPasswordHasher<UserLoginDTO>, PasswordHasher<UserLoginDTO>>();
 builder.Services.AddScoped<IPasswordHasher<ChangePasswordDTO>, PasswordHasher<ChangePasswordDTO>>();

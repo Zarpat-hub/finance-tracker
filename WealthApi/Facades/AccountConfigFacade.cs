@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using WealthApi.Core;
 using WealthApi.Database;
 using WealthApi.Database.Models;
-using WealthApi.Services;
 
 namespace WealthApi.Facades
 {
@@ -15,10 +14,10 @@ namespace WealthApi.Facades
 
     public class AccountConfigFacade : IAccountConfigFacade
     {
-        private readonly IUserService _userService;
+        private readonly IUserFacade _userService;
         private readonly DataContext _context;
 
-        public AccountConfigFacade(IUserService userService, DataContext context)
+        public AccountConfigFacade(IUserFacade userService, DataContext context)
         {
             _userService = userService;
             _context = context;
