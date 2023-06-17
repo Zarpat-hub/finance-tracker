@@ -19,5 +19,6 @@ namespace WealthApi.Database
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<AccountConfiguration> AccountsConfigurations { get; set; }
     }
 }
