@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WealthApi.Core;
 using WealthApi.Facades;
 
@@ -17,6 +18,7 @@ namespace WealthApi.Controllers
 
         [HttpPost]
         [Route("/config")]
+        [Authorize]
         public async Task<IActionResult> SetAccountConfig([FromBody]AccountConfig accountConfig)
         {
             await _accountConfigFacade.SaveConfig(accountConfig);
@@ -25,6 +27,7 @@ namespace WealthApi.Controllers
 
         [HttpGet]
         [Route("/config")]
+        [Authorize]
         public async Task<ActionResult<AccountConfig>> GetAccountConfig()
         {
             AccountConfig accountConfig = await _accountConfigFacade.GetConfig();

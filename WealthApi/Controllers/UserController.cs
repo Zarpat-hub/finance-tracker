@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WealthApi.Contracts;
 using WealthApi.Database.Models;
-using WealthApi.Services;
+using WealthApi.Facades;
 
 namespace WealthApi.Controllers
 {
@@ -10,9 +10,9 @@ namespace WealthApi.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly IUserFacade _userService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserFacade userService)
         {
             _userService = userService;
         }

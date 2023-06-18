@@ -6,22 +6,22 @@ using WealthApi.Database;
 using WealthApi.Database.Models;
 using WealthApi.Middleware;
 
-namespace WealthApi.Services
+namespace WealthApi.Facades
 {
-    public interface IUserService 
+    public interface IUserFacade
     {
         Task<User> GetCurrentUser();
         Task ChangePassword(ChangePasswordDTO dto);
     }
 
 
-    public class UserService : IUserService
+    public class UserFacade : IUserFacade
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly DataContext _context;
         private readonly IPasswordHasher<ChangePasswordDTO> _changePasswordHasher;
 
-        public UserService(IHttpContextAccessor httpContextAccessor, DataContext context, IPasswordHasher<ChangePasswordDTO> changePasswordHasher)
+        public UserFacade(IHttpContextAccessor httpContextAccessor, DataContext context, IPasswordHasher<ChangePasswordDTO> changePasswordHasher)
         {
             _httpContextAccessor = httpContextAccessor;
             _context = context;
@@ -53,7 +53,7 @@ namespace WealthApi.Services
                 throw new BadRequestException("Old Password is wrong");
             }
 
-            if (dto.NewPassword != dto.RetypedNewPassword) 
+            if (dto.NewPassword != dto.RetypedNewPassword)
             {
                 throw new BadRequestException("Passwords are not the same");
             }
