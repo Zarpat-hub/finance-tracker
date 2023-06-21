@@ -12,6 +12,7 @@ namespace WealthApi.Facades
     {
         Task<User> GetCurrentUser();
         Task ChangePassword(ChangePasswordDTO dto);
+        Task EditProfile(EditProfileDTO dto);
     }
 
 
@@ -70,6 +71,14 @@ namespace WealthApi.Facades
                 result = User.FindFirstValue(ClaimTypes.Name);
             }
             return result;
+        }
+
+        public async Task EditProfile(EditProfileDTO dto)
+        {
+            User user = await GetCurrentUser();
+            user.Email = dto.Email;
+            //add other properties
+            await _context.SaveChangesAsync();
         }
     }
 }
