@@ -38,7 +38,7 @@ namespace WealthApi.Controllers
         [HttpPost]
         [Route("/goal")]
         [Authorize]
-        public async Task<IActionResult> AddGoal(NewGoalDTO newGoalDTO)
+        public async Task<IActionResult> AddGoal([FromBody] NewGoalDTO newGoalDTO)
         {
             Goal goal = await _accountConfigFacade.AddNewGoal(newGoalDTO);
             return Ok(goal);
