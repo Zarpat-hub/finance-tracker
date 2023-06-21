@@ -458,3 +458,5 @@ $RECYCLE.BIN/
 
 .vs/
 obj/
+WealthApi/obj/
+WealthApi/bin/
