@@ -10,6 +10,7 @@ namespace WealthApi.Database.Models
         public string EncryptedPassword { get; set; }
         public string? RegistrationVerificationToken { get; set; }
         public DateTime CreatedAt { get; set; }
+        public string? UserImg { get; set; }
         public ICollection<AccountConfiguration> AccountsConfigurations { get; set; }
     }
 }

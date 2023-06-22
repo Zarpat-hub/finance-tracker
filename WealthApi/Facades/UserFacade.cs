@@ -13,6 +13,8 @@ namespace WealthApi.Facades
         Task<User> GetCurrentUser();
         Task ChangePassword(ChangePasswordDTO dto);
         Task EditProfile(EditProfileDTO dto);
+        Task<string> ChangeUserImg(IFormFile formFile);
+       
     }
 
 
@@ -79,6 +81,30 @@ namespace WealthApi.Facades
             user.Email = dto.Email;
             //add other properties
             await _context.SaveChangesAsync();
+        }
+        public async Task<string> ChangeUserImg(IFormFile formFile)
+        {
+            User user = await GetCurrentUser();
+  
+            string baseUrl = "https://localhost:7083";
+            string relativePath = $"UserFiles/{user.Username}-{formFile.FileName}";
+            string fileUrl = baseUrl.TrimEnd('/') + "/" + relativePath;
+            user.UserImg = fileUrl;
+
+            //TODO: delete old user profile img
+
+            if (formFile != null && formFile.Length > 0)
+            {
+                var rootPath = Directory.GetCurrentDirectory();
+                var fullPath = $"{rootPath}/UserFiles/{user.Username}-{formFile.FileName}";
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    formFile.CopyTo(stream);
+                } 
+            }
+
+            await _context.SaveChangesAsync();
+            return fileUrl;
         }
     }
 }
