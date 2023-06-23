@@ -39,11 +39,19 @@ namespace WealthApi.Controllers
         [HttpPost]
         [Route("edit")]
         [Authorize]
-
         public async Task<IActionResult> EditProfile(EditProfileDTO editProfileDTO) {
 
             await _userFacade.EditProfile(editProfileDTO);
             return Ok();
+        }
+
+        [HttpPost]
+        [Route("img")]
+        [Authorize]
+        public async Task<ActionResult<string>> UploadProfileImg(IFormFile formFile)
+        {
+            string url = await _userFacade.ChangeUserImg(formFile);
+            return Ok(url);
         }
 
     }
