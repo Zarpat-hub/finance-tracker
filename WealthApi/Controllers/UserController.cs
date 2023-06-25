@@ -10,11 +10,11 @@ namespace WealthApi.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly IUserFacade _userService;
+        private readonly IUserFacade _userFacade;
 
-        public UserController(IUserFacade userService)
+        public UserController(IUserFacade userFacade)
         {
-            _userService = userService;
+            _userFacade = userFacade;
         }
 
         [HttpGet]
@@ -22,7 +22,7 @@ namespace WealthApi.Controllers
         [Authorize]
         public async Task<ActionResult<User>> GetMe()
         {
-            User user = await _userService.GetCurrentUser();
+            User user = await _userFacade.GetCurrentUser();
             return Ok(user);
         }
 
@@ -32,8 +32,26 @@ namespace WealthApi.Controllers
         [Authorize]
         public async Task<IActionResult> ChangePassword(ChangePasswordDTO changePasswordDTO)
         {
-            await _userService.ChangePassword(changePasswordDTO);
+            await _userFacade.ChangePassword(changePasswordDTO);
             return Ok();
+        }
+
+        [HttpPost]
+        [Route("edit")]
+        [Authorize]
+        public async Task<IActionResult> EditProfile(EditProfileDTO editProfileDTO) {
+
+            await _userFacade.EditProfile(editProfileDTO);
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("img")]
+        [Authorize]
+        public async Task<ActionResult<string>> UploadProfileImg(IFormFile formFile)
+        {
+            string url = await _userFacade.ChangeUserImg(formFile);
+            return Ok(url);
         }
 
     }

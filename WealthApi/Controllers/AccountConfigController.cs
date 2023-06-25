@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WealthApi.Contracts;
 using WealthApi.Core;
 using WealthApi.Facades;
 
@@ -33,5 +34,15 @@ namespace WealthApi.Controllers
             AccountConfig accountConfig = await _accountConfigFacade.GetConfig();
             return Ok(accountConfig);
         }
+
+        [HttpPost]
+        [Route("/goal")]
+        [Authorize]
+        public async Task<IActionResult> AddGoal([FromBody] NewGoalDTO newGoalDTO)
+        {
+            Goal goal = await _accountConfigFacade.AddNewGoal(newGoalDTO);
+            return Ok(goal);
+        }
+        
     }
 }

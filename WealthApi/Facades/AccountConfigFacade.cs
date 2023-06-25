@@ -1,8 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using WealthApi.Contracts;
 using WealthApi.Core;
 using WealthApi.Database;
 using WealthApi.Database.Models;
+using static Org.BouncyCastle.Math.EC.ECCurve;
+
 
 namespace WealthApi.Facades
 {
@@ -10,6 +13,9 @@ namespace WealthApi.Facades
     {
         Task SaveConfig(AccountConfig config);
         Task<AccountConfig> GetConfig();
+
+        Task<Goal> AddNewGoal(NewGoalDTO dto);
+
     }
 
     public class AccountConfigFacade : IAccountConfigFacade
@@ -56,6 +62,22 @@ namespace WealthApi.Facades
             await _context.SaveChangesAsync();
         }
 
+        public async Task<Goal> AddNewGoal(NewGoalDTO dto)
+        {
+            Goal goal = new Goal(dto.Value,dto.Name,dto.Priority,dto.Deadline);
+            AccountConfig currentConfig = await GetConfig();
+            currentConfig.Goals.Add(goal);
+
+            AccountConfiguration rawConfiguration = await GetRawDbConfiguration();
+            string configJson = JsonConvert.SerializeObject(currentConfig);
+            rawConfiguration.ConfigurationJson = configJson;
+
+            await _context.SaveChangesAsync();
+
+            return goal;
+        }
+
+
         private async Task<List<Goal>> GetGoals()
         {
             AccountConfig currentConfig = await GetConfig();
@@ -75,5 +97,7 @@ namespace WealthApi.Facades
 
             return accountConfigurationRaw;
         }
+
+     
     }
 }

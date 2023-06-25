@@ -14,16 +14,16 @@ namespace WealthApi.Core
         public int PayDay { get; set; }
 
         [JsonProperty("earnings")]
-        public List<Earning> Earnings { get; set; }
+        public List<Earning> ?Earnings { get; set; }
 
         [JsonProperty("constantSpendings")]
-        public List<ConstantSpending> ConstantSpendings { get; set; }
+        public List<ConstantSpending>? ConstantSpendings { get; set; }
         
         [JsonProperty("spendingLimit")]
         public int SpendingLimit { get; set; }
 
         [JsonProperty("goals")]
-        public List<Goal> Goals { get; set; }
+        public List<Goal> ?Goals { get; set; }
 
 
         public AccountConfig()
