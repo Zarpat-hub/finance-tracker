@@ -29,13 +29,23 @@ namespace WealthApi.Core
         public string Description { get; set; }
 
         [JsonProperty("category")]
-        public string Category { get; set; }
+        public Category Category { get; set; }
 
         [JsonConstructor]
-        protected Spending(int value, string description, string category) : base(value)
+        protected Spending(int value, string description, Category category) : base(value)
         {
             Description = description;
             Category = category;
+        }
+    }
+
+    public class SpendingFactory
+    {
+        public Spending Create(AccountSpendingDTO spendingDTO)
+        {
+             return spendingDTO.Type == SpendingType.SINGLE
+                ? new SingleSpending(spendingDTO.Value, spendingDTO.Description, spendingDTO.Category, spendingDTO.Date)
+                : new ConstantSpending(spendingDTO.Value, spendingDTO.Description, spendingDTO.Category, spendingDTO.Frequence);
         }
     }
 
@@ -52,6 +62,18 @@ namespace WealthApi.Core
         protected Earning(int value, string name) : base(value)
         {
             Name = name;
+        }
+    }
+
+    public class SingleEarning : Earning
+    {
+        [JsonProperty("date")]
+        public string Date { get; set; }
+        public SingleEarning() { }
+
+        public SingleEarning(int value, string name, string date) : base(value, name)
+        {
+            Date = date;
         }
     }
 
@@ -83,7 +105,7 @@ namespace WealthApi.Core
         public string Date { get; set; }
 
         [JsonConstructor]
-        public SingleSpending(int value, string description, string category, string date) : base(value, description, category)
+        public SingleSpending(int value, string description, Category category, string date) : base(value, description, category)
         {
             Date = date;
         }
@@ -97,7 +119,7 @@ namespace WealthApi.Core
         public Frequence Frequence { get; set; }
 
         [JsonConstructor]
-        public ConstantSpending(int value, string description, string category, Frequence frequence) : base(value, description, category)
+        public ConstantSpending(int value, string description, Category category, Frequence frequence) : base(value, description, category)
         {
             Frequence = frequence;
         }

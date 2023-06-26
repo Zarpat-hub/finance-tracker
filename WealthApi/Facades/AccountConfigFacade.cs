@@ -15,7 +15,7 @@ namespace WealthApi.Facades
         Task<AccountConfig> GetConfig();
 
         Task<Goal> AddNewGoal(NewGoalDTO dto);
-
+        Task AddNewConstantSpending(ConstantSpending constantSpending);
     }
 
     public class AccountConfigFacade : IAccountConfigFacade
@@ -44,7 +44,7 @@ namespace WealthApi.Facades
 
         public async Task SaveConfig(AccountConfig config)
         {
-            config.Goals = await GetGoals();
+            //config.Goals = await GetGoals();
             string configJson = JsonConvert.SerializeObject(config);
 
             AccountConfiguration rawConfiguration = await GetRawDbConfiguration();
@@ -78,17 +78,17 @@ namespace WealthApi.Facades
         }
 
 
-        private async Task<List<Goal>> GetGoals()
-        {
-            AccountConfig currentConfig = await GetConfig();
+        //private async Task<List<Goal>> GetGoals()
+        //{
+        //    AccountConfig currentConfig = await GetConfig();
 
-            if (currentConfig == null)
-            {
-                return new List<Goal>();
-            }
+        //    if (currentConfig == null)
+        //    {
+        //        return new List<Goal>();
+        //    }
 
-            return currentConfig.Goals;
-        }
+        //    return currentConfig.Goals;
+        //}
 
         private async Task<AccountConfiguration> GetRawDbConfiguration()
         {
@@ -98,6 +98,16 @@ namespace WealthApi.Facades
             return accountConfigurationRaw;
         }
 
-     
+        public async Task AddNewConstantSpending(ConstantSpending constantSpending)
+        {
+            AccountConfig currentConfig = await GetConfig();
+            currentConfig.ConstantSpendings.Add(constantSpending);
+
+            AccountConfiguration rawConfiguration = await GetRawDbConfiguration();
+            string configJson = JsonConvert.SerializeObject(currentConfig);
+            rawConfiguration.ConfigurationJson = configJson;
+
+            await _context.SaveChangesAsync();
+        }
     }
 }

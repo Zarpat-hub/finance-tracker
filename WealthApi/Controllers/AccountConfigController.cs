@@ -11,10 +11,12 @@ namespace WealthApi.Controllers
     public class AccountConfigController : ControllerBase
     {
         private readonly IAccountConfigFacade _accountConfigFacade;
+        private readonly IAccountTransactionFacade _accountSpendingFacade;
 
-        public AccountConfigController(IAccountConfigFacade accountConfigFacade)
+        public AccountConfigController(IAccountConfigFacade accountConfigFacade, IAccountTransactionFacade accountSpendingFacade)
         {
             _accountConfigFacade = accountConfigFacade;
+            _accountSpendingFacade = accountSpendingFacade;
         }
 
         [HttpPost]
@@ -43,6 +45,32 @@ namespace WealthApi.Controllers
             Goal goal = await _accountConfigFacade.AddNewGoal(newGoalDTO);
             return Ok(goal);
         }
-        
+
+        [HttpPost]
+        [Route("/spending")]
+        [Authorize]
+        public async Task<IActionResult> AddAccountSpending([FromBody] AccountSpendingDTO accountSpending)
+        {
+            await _accountSpendingFacade.SaveSpending(accountSpending);
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("/income")]
+        [Authorize]
+        public async Task<IActionResult> AddSingleIncome([FromBody] SingleIncomeDTO singleIncomeDTO)
+        {
+            await _accountSpendingFacade.SaveIncome(singleIncomeDTO);
+
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("/balance")]
+        [Authorize]
+        public async Task<ActionResult<TransactionsBalanceDTO>> GetTransactionsBalance()
+        {
+            return Ok(await _accountSpendingFacade.GetTransactionsBalance());
+        }
     }
 }
