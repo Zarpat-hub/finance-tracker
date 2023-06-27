@@ -11,6 +11,9 @@ namespace WealthApi.Database.Models
         public string? RegistrationVerificationToken { get; set; }
         public DateTime CreatedAt { get; set; }
         public string? UserImg { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+
         public ICollection<AccountConfiguration> AccountsConfigurations { get; set; }
     }
 }

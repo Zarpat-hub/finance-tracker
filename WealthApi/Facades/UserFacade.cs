@@ -79,7 +79,9 @@ namespace WealthApi.Facades
         {
             User user = await GetCurrentUser();
             user.Email = dto.Email;
-            //add other properties
+            user.FirstName = dto.Firstname;
+            user.LastName = dto.Lastname;
+
             await _context.SaveChangesAsync();
         }
         public async Task<string> ChangeUserImg(IFormFile formFile)
