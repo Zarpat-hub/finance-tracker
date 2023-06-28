@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using WealthApi.Contracts;
 using WealthApi.Core;
+using WealthApi.Core.Enums;
 using WealthApi.Database;
 using WealthApi.Database.Models;
 using static Org.BouncyCastle.Math.EC.ECCurve;
@@ -16,6 +17,7 @@ namespace WealthApi.Facades
 
         Task<Goal> AddNewGoal(NewGoalDTO dto);
         Task AddNewConstantSpending(ConstantSpending constantSpending);
+        Task CalculateAndSaveCurrentBalance(TransactionType type, int value);
     }
 
     public class AccountConfigFacade : IAccountConfigFacade
@@ -102,6 +104,18 @@ namespace WealthApi.Facades
         {
             AccountConfig currentConfig = await GetConfig();
             currentConfig.ConstantSpendings.Add(constantSpending);
+
+            AccountConfiguration rawConfiguration = await GetRawDbConfiguration();
+            string configJson = JsonConvert.SerializeObject(currentConfig);
+            rawConfiguration.ConfigurationJson = configJson;
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task CalculateAndSaveCurrentBalance(TransactionType type, int value)
+        {
+            AccountConfig currentConfig = await GetConfig();
+            currentConfig.Balance = type == TransactionType.INCOME ? currentConfig.Balance + value : currentConfig.Balance - value;
 
             AccountConfiguration rawConfiguration = await GetRawDbConfiguration();
             string configJson = JsonConvert.SerializeObject(currentConfig);

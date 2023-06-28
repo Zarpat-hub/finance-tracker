@@ -35,6 +35,7 @@ namespace WealthApi.Facades
         {
             SingleEarning singleEarning = new SingleEarning(singleIncomeDTO.Value, singleIncomeDTO.Name, singleIncomeDTO.Date);
             _context.TransactionHistories.Add(new TransactionHistory(singleEarning, _userService.GetCurrentUser().Result.Username));
+            await _accountConfigFacade.CalculateAndSaveCurrentBalance(TransactionType.INCOME, singleIncomeDTO.Value);
 
             await _context.SaveChangesAsync();
         }
@@ -47,6 +48,7 @@ namespace WealthApi.Facades
             if (spending is SingleSpending singleSpending)
             {
                 _context.TransactionHistories.Add(new TransactionHistory(singleSpending, _userService.GetCurrentUser().Result.Username));
+                await _accountConfigFacade.CalculateAndSaveCurrentBalance(TransactionType.SPENDING, spendingDTO.Value);
             }
             if (spending is ConstantSpending constantSpending)
             {
