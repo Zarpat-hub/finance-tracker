@@ -15,7 +15,7 @@ namespace WealthApi.Database
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             // connect to postgres with connection string from app settings
-            options.UseNpgsql(_config.GetConnectionString("WEALTH_LOCAL_POSTGRE"));
+            options.UseNpgsql(_config.GetSection("ConnectionStrings").GetChildren().First().Value);
             options.EnableSensitiveDataLogging().LogTo(Console.WriteLine);
         }
 
