@@ -25,13 +25,16 @@ namespace WealthApi.Core
         [JsonProperty("goals")]
         public List<Goal> ?Goals { get; set; }
 
+        [JsonProperty("savings")]
+        public int SavingsValue { get; set; } = 0;
+
 
         public AccountConfig()
         {
 
         }
 
-        public AccountConfig(string currency, int balance, int payDay, List<Earning> earnings, List<ConstantSpending> constantSpendings, int spendingLimit, List<Goal> goals)
+        public AccountConfig(string currency, int balance, int payDay, List<Earning> earnings, List<ConstantSpending> constantSpendings, int spendingLimit, List<Goal> goals, int savingsValue)
         {
             Currency = currency;
             Balance = balance;
@@ -40,6 +43,7 @@ namespace WealthApi.Core
             ConstantSpendings = constantSpendings;
             SpendingLimit = spendingLimit;
             Goals = goals;
+            SavingsValue = savingsValue;
         }
     }
 }
